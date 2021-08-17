@@ -15,7 +15,6 @@ lambda = c / start_freq;
 bandwidth = freq_slope * adc_samples / sample_rate;
 d_res = sample_rate * c / 2 / freq_slope / N_fft_rng;
 d_max = sample_rate * c / 2 / freq_slope;
-v_res = lambda / 2 / N_fft / chirp_time;
 frames = 600;
 rx_num = 4;
 tx_num = 3;
@@ -84,9 +83,6 @@ for sequence_id = 1:1:10
         cfar2D = phased.CFARDetector2D('GuardBandSize',1,'TrainingBandSize',2,...
           'ProbabilityFalseAlarm',1e-1);
         %[resp,rngGrid,dopGrid] = helperRangeDoppler;
-
-        rngGrid = (1:1:256) * d_res;
-        dopGrid = (-64:1:63) * v_res;
 
         CUTIdx = [];
         for rng_idx = 4:1:63
